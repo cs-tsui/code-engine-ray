@@ -10,6 +10,7 @@ pip install kubernetes
 pip install 'ray[default]'
 ```
 
+## Target RG and Create Code Engine Project
 ```
 ibmcloud resource groups
 
