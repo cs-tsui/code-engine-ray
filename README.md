@@ -34,7 +34,7 @@ curl -L https://gist.github.com/ruediger-maass/042ef187aa012f77d2a83b46ecda4df8/
 ```
 ray up example-cluster.yaml
 ```
-
+Some issues are observed after running `ray up` using the provided `example-cluster.yaml` file.
 
 ## Issues
 
@@ -61,4 +61,16 @@ ray up example-cluster.yaml
     "apiVersion": "v1",
     "code": 422
 }
+```
+
+Run `ray up example-cluster.yaml` again
+
+2) After running `ray up` another error occurs
+
+
+```
+kubernetes.client.exceptions.ApiException: (422)
+Reason: Unprocessable Entity
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 26 Jul 2021 20:07:43 GMT', 'Content-Type': 'application/json', 'Content-Length': '1804', 'Connection': 'keep-alive', 'Audit-Id': '0e063020-c8b7-4e3f-a831-f91dd1770e89', 'Cache-Control': 'no-cache, private', 'X-Kubernetes-Pf-Flowschema-Uid': '5bc69b35-ecf3-452f-9444-ac4464cb3580', 'X-Kubernetes-Pf-Prioritylevel-Uid': 'd1839302-c341-41b1-a216-264fac31c3ca', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'", 'X-XSS-Protection': '1; mode=block'})
+HTTP response body: {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"Pod \"example-cluster-ray-head-lqxvp\" is invalid: spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`, `spec.initContainers[*].image`, `spec.activeDeadlineSeconds` or `spec.tolerations` (only additions to existing tolerations)\n  core.PodSpec{\n  \t... // 10 identical fields\n  \tAutomountServiceAccountToken: nil,\n  \tNodeName:                     \"10.240.64.124\",\n  \tSecurityContext: \u0026core.PodSecurityContext{\n  \t\t... // 11 identical fields\n  \t\tFSGroupChangePolicy: nil,\n  \t\tSysctls:             nil,\n- \t\tSeccompProfile:      nil,\n+ \t\tSeccompProfile:      \u0026core.SeccompProfile{Type: \"RuntimeDefault\"},\n  \t},\n  \tImagePullSecrets: nil,\n  \tHostname:         \"\",\n  \t... // 15 identical fields\n  }\n","reason":"Invalid","details":{"name":"example-cluster-ray-head-lqxvp","kind":"Pod","causes":[{"reason":"FieldValueForbidden","message":"Forbidden: pod updates may not change fields other than `spec.containers[*].image`, `spec.initContainers[*].image`, `spec.activeDeadlineSeconds` or `spec.tolerations` (only additions to existing tolerations)\n  core.PodSpec{\n  \t... // 10 identical fields\n  \tAutomountServiceAccountToken: nil,\n  \tNodeName:                     \"10.240.64.124\",\n  \tSecurityContext: \u0026core.PodSecurityContext{\n  \t\t... // 11 identical fields\n  \t\tFSGroupChangePolicy: nil,\n  \t\tSysctls:             nil,\n- \t\tSeccompProfile:      nil,\n+ \t\tSeccompProfile:      \u0026core.SeccompProfile{Type: \"RuntimeDefault\"},\n  \t},\n  \tImagePullSecrets: nil,\n  \tHostname:         \"\",\n  \t... // 15 identical fields\n  }\n","field":"spec"}]},"code":422}
 ```
