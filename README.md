@@ -49,10 +49,19 @@ ray exec ./example-cluster.yaml 'tail -n 100 -f /tmp/ray/session_latest/logs/mon
 ```
 
 
+```
+# Port Forward the pod to access dashboard
+ray dashboard example-cluster.yaml &
+
+# Then navigate to 
+http://localhost:8265
+```
+
 
 ## Issues
 
-1) Code Engine seems to only accept request/limits in specific CPU and Mem combinations. To remedy, edit `example-cluster.yaml` and modify each request/limit mem value to `500m` and `1G` respectively.
+1) Code Engine seems to only accept request/limits in specific CPU and Mem combinations. To remedy, edit `example-cluster.yaml` and modify each request/limit mem value to `500m` and `1G` respectively. Then run `ray up example-cluster.yaml` again
+
 
 ```
 {
@@ -77,10 +86,7 @@ ray exec ./example-cluster.yaml 'tail -n 100 -f /tmp/ray/session_latest/logs/mon
 }
 ```
 
-Run `ray up example-cluster.yaml` again
-
-2) After running `ray up` another error occurs. Update: No longer seeing the following error on July 28th.
-
+2) **Update: No longer seeing the following error on July 28th.**  After running `ray up` another error occurs. 
 
 ```
 kubernetes.client.exceptions.ApiException: (422)
