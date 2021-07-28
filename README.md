@@ -41,7 +41,14 @@ curl -L https://gist.github.com/ruediger-maass/042ef187aa012f77d2a83b46ecda4df8/
 ```
 ray up example-cluster.yaml
 ```
-Some issues are observed after running `ray up` using the provided `example-cluster.yaml` file.
+Some issues are observed after running `ray up` using the provided `example-cluster.yaml` file. Please see the "Issues" section for details and workarounds.
+
+```
+# Check logs
+ray exec ./example-cluster.yaml 'tail -n 100 -f /tmp/ray/session_latest/logs/monitor*'
+```
+
+
 
 ## Issues
 
