@@ -12,6 +12,9 @@ pip install 'ray[default]'
 
 ## Target RG and Create Code Engine Project
 ```
+# Login (needed federated accounts)
+ibmcloud login --sso
+
 # List resource groups
 ibmcloud resource groups
 
